@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas para Mi Amor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffefba 0%, #ffcc66 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Contenedor del mensaje */
+        .mensaje {
+            position: absolute;
+            top: 20px; /* Movido a la parte superior */
+            text-align: center;
+            z-index: 10;
+            max-width: 90%;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.4); /* Fondo transparente */
+            border-radius: 15px;
+            backdrop-filter: blur(8px);
+            animation: fadeIn 2s ease-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transform: translateY(-20px); /* Inicia ligeramente arriba */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mensaje h1 {
+            font-size: 2.5rem; /* Tamaño reducido para mayor equilibrio */
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #ffec8b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .mensaje p {
+            font-size: 1.4rem; /* Tamaño reducido para mayor equilibrio */
+            line-height: 1.5;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .flowers-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Diseño corregido de la flor */
+        .flower {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 0;
+            z-index: 1;
+        }
+
+        /* Tallo con efecto 3D (CORREGIDO) */
+        .stem {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(to top, #2e8b57, #3cb371, #2e8b57);
+            transform: translateX(-50%);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            border-radius: 2px;
+        }
+
+        /* Hojas con forma orgánica (CORREGIDO) */
+        .leaf {
+            position: absolute;
+            width: 25px;
+            height: 40px;
+            background: linear-gradient(to top, #228b22, #32cd32);
+            border-radius: 50% 50% 0 50%;
+            transform-origin: bottom;
+            opacity: 0;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaf.left {
+            bottom: 30px;
+            left: -18px;
+            transform: rotate(-45deg) scale(0);
+        }
+
+        .leaf.right {
+            bottom: 50px;
+            right: -18px;
+            transform: rotate(45deg) scale(0);
+        }
+
+        /* Flor con pétalos realistas (CORREGIDO - POSICION CORRECTA) */
+        .flower-head {
+            position: absolute;
+            bottom: 100%; /* CORRECCIÓN CLAVE: Ahora está encima del tallo */
+            left: 50%;
+            transform: translate(-50%, 50%); /* Ajuste para centrar */
+            width: 50px;
+            height: 50px;
+        }
+
+        .petal {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(to bottom, #ffff00, #ffd700, #ffff99);
+            border-radius: 50% 50% 0 50%;
+            transform-origin: bottom;
+            opacity: 0;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Posicionamiento de pétalos CORREGIDO */
+        .petal:nth-child(1) { transform: rotate(0deg) translateX(12px) scale(0); }
+        .petal:nth-child(2) { transform: rotate(51.4deg) translateX(12px) scale(0); }
+        .petal:nth-child(3) { transform: rotate(102.8deg) translateX(12px) scale(0); }
+        .petal:nth-child(4) { transform: rotate(154.2deg) translateX(12px) scale(0); }
+        .petal:nth-child(5) { transform: rotate(205.6deg) translateX(12px) scale(0); }
+        .petal:nth-child(6) { transform: rotate(257deg) translateX(12px) scale(0); }
+        .petal:nth-child(7) { transform: rotate(308.4deg) translateX(12px) scale(0); }
+
+        /* Centro de la flor con textura */
+        .center {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #ff8c00, #d2691e);
+            border-radius: 50%;
+            top: 17px;
+            left: 17px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animaciones detalladas CORREGIDAS */
+        @keyframes growStem {
+            0% { height: 0; }
+            100% { height: 120px; }
+        }
+
+        @keyframes unfurlLeaf {
+            0% { transform: rotate(-45deg) scale(0); opacity: 0; }
+            70% { opacity: 1; }
+            100% { transform: rotate(-30deg) scale(1); opacity: 1; }
+        }
+
+        @keyframes bloomPetal {
+            0% { transform: rotate(var(--rotate)) translateX(12px) scale(0); opacity: 0; }
+            100% { transform: rotate(var(--rotate)) translateX(12px) scale(1); opacity: 1; }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mensaje romántico -->
+    <div class="mensaje">
+        <h1>🌷 Para Mi Amor Especial 🌷</h1>
+        <p>Cada flor que crece representa el amor que florece en mi corazón por ti. ¡Feliz 21, mi vida!</p>
+    </div>
+
+    <!-- Contenedor para las flores -->
+    <div class="flowers-container" id="flowers-container"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('flowers-container');
+            const colors = ['#FFD700', '#FFFF00', '#FFEE99', '#FFFACD'];
+            
+            // Crear múltiples flores con variaciones naturales
+            for (let i = 0; i < 40; i++) {
+                createFlower(container, colors);
+            }
+            
+            // Crear flores adicionales con intervalo
+            setInterval(() => {
+                if (container.children.length < 60) {
+                    createFlower(container, colors);
+                }
+            }, 1500);
+        });
+
+        function createFlower(container, colors) {
+            // Tiempos aleatorios para efecto natural
+            const stemGrowthTime = 2.5 + Math.random() * 1.5;
+            const leafUnfurlTime = 1.8 + Math.random() * 0.7;
+            const petalBloomTime = 1.2 + Math.random() * 0.5;
+            
+            // Retraso inicial aleatorio
+            const startDelay = Math.random() * 3;
+            
+            // Crear elementos
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            
+            const stem = document.createElement('div');
+            stem.className = 'stem';
+            
+            const leafLeft = document.createElement('div');
+            leafLeft.className = 'leaf left';
+            
+            const leafRight = document.createElement('div');
+            leafRight.className = 'leaf right';
+            
+            const flowerHead = document.createElement('div');
+            flowerHead.className = 'flower-head';
+            
+            // Crear pétalos (7 para mayor realismo)
+            for (let i = 0; i < 7; i++) {
+                const angle = i * 51.4;
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.setProperty('--rotate', `${angle}deg`);
+                flowerHead.appendChild(petal);
+            }
+            
+            // Centro de la flor
+            const center = document.createElement('div');
+            center.className = 'center';
+            flowerHead.appendChild(center);
+            
+            // Estructura jerárquica CORREGIDA
+            stem.appendChild(leafLeft);
+            stem.appendChild(leafRight);
+            stem.appendChild(flowerHead);
+            flower.appendChild(stem);
+            
+            // Posición aleatoria horizontal
+            const randomX = 10 + Math.random() * 80;
+            flower.style.left = `${randomX}%`;
+            
+            // Variaciones de tamaño
+            const sizeFactor = 0.8 + Math.random() * 0.5;
+            flower.style.transform = `translateX(-50%) scale(${sizeFactor})`;
+            
+            // Animaciones con retrasos calculados
+            stem.style.animation = `growStem ${stemGrowthTime}s ease-out ${startDelay}s forwards`;
+            leafLeft.style.animation = `unfurlLeaf ${leafUnfurlTime}s ease-out ${startDelay + 1}s forwards`;
+            leafRight.style.animation = `unfurlLeaf ${leafUnfurlTime}s ease-out ${startDelay + 1.2}s forwards`;
+            
+            // Animación de pétalos con secuencia
+            const petals = flowerHead.querySelectorAll('.petal');
+            petals.forEach((petal, index) => {
+                const delay = startDelay + 1.8 + (index * 0.1);
+                petal.style.animation = `bloomPetal ${petalBloomTime}s ease-out ${delay}s forwards`;
+            });
+            
+            // Movimiento suave después de florecer
+            setTimeout(() => {
+                flowerHead.style.animation = 'sway 8s ease-in-out infinite';
+                flowerHead.style.animationDelay = `${startDelay + 3}s`;
+            }, (startDelay + 3) * 1000);
+            
+            // Añadir al contenedor
+            container.appendChild(flower);
+            
+            // Eliminar flores antiguas para optimización
+            if (container.children.length > 70) {
+                container.removeChild(container.children[0]);
+            }
+        }
+    </script>
+</body>
+</html>

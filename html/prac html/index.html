@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>C.E.E.Chamberland.</title>
+  <!-- jsPDF para generar PDFs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background: #f7f7f7;
+    }
+    header {
+      background: #D90012;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      border-bottom: 5px solid #000000;
+    }
+    header h1 {
+      font-size: 2.8em;
+      margin: 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    header p {
+      font-size: 1.2em;
+      margin: 10px 0 0;
+    }
+    nav {
+      background: #000000;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 10px 0;
+    }
+    nav ul li {
+      margin: 0 18px;
+    }
+    nav a {
+      color: #FCD116;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 10px 16px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #D90012;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 25px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      border: 3px solid #FCD116;
+    }
+    section {
+      display: none;
+      padding: 20px;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      color: #D90012;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #FCD116;
+      padding-bottom: 8px;
+      display: inline-block;
+    }
+    h3 {
+      color: #000000;
+      margin: 20px 0 10px;
+    }
+    p {
+      margin: 10px 0;
+    }
+    ul {
+      margin: 15px 0;
+      padding-left: 25px;
+    }
+    .btn {
+      background: #D90012;
+      color: white;
+      border: 2px solid #000000;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      margin: 10px 5px 10px 0;
+    }
+    .btn:hover {
+      background: #FCD116;
+      color: #000000;
+    }
+    .btn-amarillo {
+      background: #FCD116;
+      color: #000000;
+    }
+    .btn-amarillo:hover {
+      background: #D90012;
+      color: white;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #D90012;
+      border-radius: 6px;
+      font-size: 1em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    table th {
+      background: #D90012;
+      color: white;
+      padding: 12px;
+      text-align: left;
+    }
+    table td {
+      padding: 12px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    table tr:hover {
+      background: #fff9e6;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .alert {
+      background: #f9e6e6;
+      border-left: 5px solid #D90012;
+      padding: 15px;
+      border-radius: 0 8px 8px 0;
+      margin: 15px 0;
+      color: #8a0000;
+    }
+    .card {
+      background: #fdf5e6;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid #FCD116;
+      margin: 20px 0;
+    }
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #D90012;
+      color: white;
+      border-top: 3px solid #FCD116;
+      margin-top: 50px;
+    }
+    .footer p {
+      margin: 8px 0;
+    }
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav ul li {
+        margin: 8px 0;
+      }
+      header h1 {
+        font-size: 2.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🏫 Complejo Educativo Estadal Eulalia Sanchez de Chamberlnad.</h1>
+    <p>Formando con identidad, patriotismo y excelencia académica</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showSection('inicio')">Inicio</a></li>
+      <li><a href="#" onclick="showSection('cursos')">Cursos</a></li>
+      <li><a href="#" onclick="showSection('inscripciones')">Inscripciones</a></li>
+      <li><a href="#" onclick="showSection('profesores')">Profesores</a></li>
+      <li><a href="#" onclick="showSection('estudiantes')">Estudiantes</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- INICIO -->
+    <section id="inicio" class="active">
+      <h2>Bienvenidos a Nuestra Institución</h2>
+      <img src="https://placehold.co/1200x400/D90012/FCD116?text=Escuela+Bolivariana+Miranda" alt="Escuela Miranda" style="width:100%; border-radius:10px; margin:15px 0;" />
+      
+      <div class="card">
+        <h3>📌 Misión</h3>
+        <p>Formar ciudadanos críticos, éticos y comprometidos con la patria, mediante una educación integral, inclusiva y de calidad, enraizada en los valores bolivarianos y el amor a Venezuela.</p>
+      </div>
+
+      <div class="card">
+        <h3>🔭 Visión</h3>
+        <p>Ser una escuela líder en el Estado Miranda, reconocida por su excelencia académica, innovación pedagógica y formación cívica, contribuyendo al desarrollo humano sostenible.</p>
+      </div>
+
+      <div class="card">
+        <h3>📚 Oferta Académica</h3>
+        <ul>
+          <li><strong>Primaria:</strong> 1° a 6° grado</li>
+          <li><strong>Secundaria:</strong> 1° a 5° año</li>
+          <li><strong>Materias:</strong> Matemáticas, Lengua, Ciencias, Historia, Geografía, Inglés, Computación, Educación Física, Arte, Valores, Proyectos</li>
+        </ul>
+      </div>
+
+      <div class="alert">
+        <strong>📅 Inscripciones 2025:</strong> Abiertas del 1° al 30 de septiembre. ¡Garantiza el futuro de tu hijo/a!
+      </div>
+    </section>
+
+    <!-- CURSOS -->
+    <section id="cursos">
+      <h2>📋 Cursos Disponibles</h2>
+      <p>Ofrecemos una educación completa desde primaria hasta secundaria.</p>
+
+      <h3>🎓 Niveles Educativos</h3>
+      <ul>
+        <li><strong>Primaria:</strong> 1° a 6° grado (7 a 12 años)</li>
+        <li><strong>Secundaria:</strong> 1° a 5° año (13 a 17 años)</li>
+      </ul>
+
+      <h3>📘 Materias por Nivel</h3>
+      <p>Nuestros estudiantes cursan las siguientes 11 materias:</p>
+      <ul>
+        <li>Matemáticas</li>
+        <li>Lengua y Literatura</li>
+        <li>Ciencias Naturales</li>
+        <li>História de Venezuela</li>
+        <li>Geografía</li>
+        <li>Inglés</li>
+        <li>Computación</li>
+        <li>Educación Física</li>
+        <li>Arte y Cultura</li>
+        <li>Valores y Ética</li>
+        <li>Proyectos Escolares</li>
+      </ul>
+    </section>
+
+    <!-- INSCRIPCIONES -->
+    <section id="inscripciones">
+      <h2>📝 Formulario de Inscripción</h2>
+      <p>Complete todos los campos para inscribir a su hijo/a.</p>
+      <form id="form-inscripcion">
+        <div class="form-group">
+          <label>Nombre del estudiante</label>
+          <input type="text" id="nombre-est" required />
+        </div>
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" id="apellido-est" required />
+        </div>
+        <div class="form-group">
+          <label>Edad</label>
+          <input type="number" id="edad-est" required />
+        </div>
+        <div class="form-group">
+          <label>Grado</label>
+          <select id="grado-est" required>
+            <optgroup label="Primaria">
+              <option>1° Primaria</option>
+              <option>2° Primaria</option>
+              <option>3° Primaria</option>
+              <option>4° Primaria</option>
+              <option>5° Primaria</option>
+              <option>6° Primaria</option>
+            </optgroup>
+            <optgroup label="Secundaria">
+              <option>1° Secundaria</option>
+              <option>2° Secundaria</option>
+              <option>3° Secundaria</option>
+              <option>4° Secundaria</option>
+              <option>5° Secundaria</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nombre del acudiente</label>
+          <input type="text" id="nombre-acudiente" required />
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" id="telefono" required />
+        </div>
+        <div class="form-group">
+          <label>Correo</label>
+          <input type="email" id="email" required />
+        </div>
+        <button type="button" class="btn" onclick="generarPDF()">Generar PDF para Impresión</button>
+      </form>
+    </section>
+
+    <!-- PROFESORES -->
+    <section id="profesores">
+      <h2>👨‍🏫 Área de Profesores</h2>
+      <p>Acceda para gestionar estudiantes y notas.</p>
+      <form onsubmit="event.preventDefault(); loginTeacher();">
+        <div class="form-group">
+          <label>Usuario</label>
+          <input type="text" id="profesor-user" required />
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="profesor-pass" required />
+        </div>
+        <button type="submit" class="btn">Ingresar</button>
+      </form>
+
+      <div id="profesor-panel" style="display:none; margin-top:25px;">
+        <h3>📚 Gestión de Estudiantes y Notas</h3>
+        <p><strong>Curso:</strong> <span id="curso-profesor">5° Primaria - A</span></p>
+
+        <button class="btn" onclick="agregarEstudiante()">+ Agregar Estudiante</button>
+        <button class="btn btn-amarillo" onclick="actualizarVista()">Actualizar Vista</button>
+
+        <table id="tabla-estudiantes">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Matrícula</th>
+              <th>Matemáticas</th>
+              <th>Lengua</th>
+              <th>Ciencias</th>
+              <th>Historia</th>
+              <th>Geografía</th>
+              <th>Inglés</th>
+              <th>Computación</th>
+              <th>Educ. Física</th>
+              <th>Arte</th>
+              <th>Valores</th>
+              <th>Proyectos</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo-tabla">
+            <tr data-id="1">
+              <td>María López</td>
+              <td>2025001</td>
+              <td><input type="number" value="85" min="0" max="100" /></td>
+              <td><input type="number" value="78" min="0" max="100" /></td>
+              <td><input type="number" value="90" min="0" max="100" /></td>
+              <td><input type="number" value="82" min="0" max="100" /></td>
+              <td><input type="number" value="88" min="0" max="100" /></td>
+              <td><input type="number" value="75" min="0" max="100" /></td>
+              <td><input type="number" value="95" min="0" max="100" /></td>
+              <td><input type="number" value="80" min="0" max="100" /></td>
+              <td><input type="number" value="92" min="0" max="100" /></td>
+              <td><input type="number" value="87" min="0" max="100" /></td>
+              <td><input type="number" value="84" min="0" max="100" /></td>
+              <td>
+                <button class="btn" onclick="guardarNotas(this)">Guardar</button>
+                <button class="btn btn-amarillo" onclick="eliminarEstudiante(this)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ESTUDIANTES -->
+    <section id="estudiantes">
+      <h2>📊 Consulta de Notas</h2>
+      <p>Ingrese su número de matrícula para ver sus calificaciones.</p>
+      <div class="form-group">
+        <label>Número de matrícula</label>
+        <input type="text" id="matricula" placeholder="Ej: 2025001" />
+      </div>
+      <button class="btn" onclick="verNotas()">Ver Notas</button>
+
+      <div id="resultados-notas" style="display:none; margin-top:25px;">
+        <h3>📋 Calificaciones del Estudiante</h3>
+        <p><strong>Nombre:</strong> <span id="nombre-estudiante">María López</span></p>
+        <p><strong>Grado:</strong> <span id="grado-estudiante">5° Primaria</span></p>
+        <table>
+          <tr>
+            <th>Materia</th>
+            <th>Nota</th>
+            <th>Estado</th>
+          </tr>
+          <tr>
+            <td>Matemáticas</td>
+            <td id="nota-matematicas">85</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+          <tr>
+            <td>Lengua</td>
+            <td id="nota-lengua">78</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+          <tr>
+            <td>Ciencias</td>
+            <td id="nota-ciencias">90</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+          <tr>
+            <td>Historia</td>
+            <td id="nota-historia">82</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+          <tr>
+            <td>Geografía</td>
+            <td id="nota-geografia">88</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+          <tr>
+            <td>Inglés</td>
+            <td id="nota-ingles">75</td>
+            <td><span style="color:orange;">En riesgo</span></td>
+          </tr>
+          <tr>
+            <td>Computación</td>
+            <td id="nota-computacion">95</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+          <tr>
+            <td>Educ. Física</td>
+            <td id="nota-educfisica">80</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+          <tr>
+            <td>Arte</td>
+            <td id="nota-arte">92</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+          <tr>
+            <td>Valores</td>
+            <td id="nota-valores">87</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+          <tr>
+            <td>Proyectos</td>
+            <td id="nota-proyectos">84</td>
+            <td><span style="color:green;">Aprobado</span></td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    <p><strong>Escuela Bolivariana Miranda</strong></p>
+    <p>📍 Dirección: Av. Miranda, Estado Miranda, Venezuela</p>
+    <p>📞 Teléfono: (0212) 555-1234 | ✉️ Email: info@escuelamiranda.gob.ve</p>
+    <p>&copy; 2025 Todos los derechos reservados. Patria, Socialismo o Muerte.</p>
+  </div>
+
+  <script>
+    // Datos simulados de estudiantes
+    let estudiantes = [
+      { id: 1, nombre: "María López", matricula: "2025001", grado: "5° Primaria", notas: [85,78,90,82,88,75,95,80,92,87,84] }
+    ];
+    let nextId = 2;
+
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+
+    function loginTeacher() {
+      const user = document.getElementById('profesor-user').value;
+      const pass = document.getElementById('profesor-pass').value;
+
+      if (user === 'profesor' && pass === '1234') {
+        document.getElementById('profesor-panel').style.display = 'block';
+        actualizarTabla();
+        alert('¡Bienvenido, profesor!');
+      } else {
+        alert('Usuario o contraseña incorrectos');
+      }
+    }
+
+    function agregarEstudiante() {
+      const nombre = prompt("Nombre del estudiante:");
+      if (!nombre) return;
+      const matricula = "2025" + String(nextId).padStart(3, '0');
+      
+      estudiantes.push({
+        id: nextId,
+        nombre,
+        matricula,
+        grado: "5° Primaria",
+        notas: Array(11).fill(70)
+      });
+      nextId++;
+      actualizarTabla();
+      alert(`Estudiante agregado: ${nombre} (Matrícula: ${matricula})`);
+    }
+
+    function eliminarEstudiante(button) {
+      if (!confirm("¿Eliminar este estudiante?")) return;
+      const row = button.closest('tr');
+      const id = parseInt(row.dataset.id);
+      estudiantes = estudiantes.filter(e => e.id !== id);
+      row.remove();
+    }
+
+    function guardarNotas(button) {
+      const row = button.parentNode.parentNode;
+      const id = parseInt(row.dataset.id);
+      const inputs = row.querySelectorAll('input');
+      const estudiante = estudiantes.find(e => e.id === id);
+      if (estudiante) {
+        estudiante.notas = Array.from(inputs).map(input => parseInt(input.value) || 0);
+        alert(`Notas de ${estudiante.nombre} guardadas.`);
+      }
+    }
+
+    function actualizarTabla() {
+      const tbody = document.getElementById('cuerpo-tabla');
+      tbody.innerHTML = '';
+      estudiantes.forEach(est => {
+        let tr = document.createElement('tr');
+        tr.dataset.id = est.id;
+        tr.innerHTML = `
+          <td>${est.nombre}</td>
+          <td>${est.matricula}</td>
+          ${est.notas.map(nota => `<td><input type="number" value="${nota}" min="0" max="100" /></td>`).join('')}
+          <td>
+            <button class="btn" onclick="guardarNotas(this)">Guardar</button>
+            <button class="btn btn-amarillo" onclick="eliminarEstudiante(this)">Eliminar</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function actualizarVista() {
+      actualizarTabla();
+    }
+
+    function verNotas() {
+      const matricula = document.getElementById('matricula').value.trim();
+      const estudiante = estudiantes.find(e => e.matricula === matricula);
+      if (estudiante) {
+        document.getElementById('nombre-estudiante').textContent = estudiante.nombre;
+        document.getElementById('grado-estudiante').textContent = estudiante.grado;
+        
+        const materias = ['matematicas','lengua','ciencias','historia','geografia','ingles','computacion','educfisica','arte','valores','proyectos'];
+        estudiante.notas.forEach((nota, i) => {
+          const cell = document.getElementById('nota-' + materias[i]);
+          cell.textContent = nota;
+        });
+
+        document.getElementById('resultados-notas').style.display = 'block';
+      } else {
+        alert('Matrícula no encontrada. Verifique el número.');
+      }
+    }
+
+    function generarPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      const nombre = document.getElementById('nombre-est').value;
+      const apellido = document.getElementById('apellido-est').value;
+      const edad = document.getElementById('edad-est').value;
+      const grado = document.getElementById('grado-est').value;
+      const acudiente = document.getElementById('nombre-acudiente').value;
+      const telefono = document.getElementById('telefono').value;
+      const email = document.getElementById('email').value;
+
+      if (!nombre || !apellido || !edad || !grado || !acudiente) {
+        alert('Por favor complete todos los campos.');
+        return;
+      }
+
+      doc.setFontSize(18);
+      doc.setTextColor(217, 0, 18);
+      doc.text("FICHA DE INSCRIPCIÓN", 105, 20, null, null, 'center');
+
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text(`Nombre: ${nombre} ${apellido}`, 20, 40);
+      doc.text(`Edad: ${edad} años`, 20, 50);
+      doc.text(`Grado: ${grado}`, 20, 60);
+      doc.text(`Acudiente: ${acudiente}`, 20, 70);
+      doc.text(`Teléfono: ${telefono}`, 20, 80);
+      doc.text(`Email: ${email}`, 20, 90);
+
+      doc.text("Escuela Bolivariana Miranda", 105, 120, null, null, 'center');
+      doc.text("Estado Miranda, Venezuela", 105, 130, null, null, 'center');
+
+      doc.save(`inscripcion_${nombre}_${apellido}.pdf`);
+    }
+
+    // Mostrar inicio por defecto
+    showSection('inicio');
+  </script>
+
+</body>
+</html>

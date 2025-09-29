@@ -1,0 +1,301 @@
+ /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      transition: background-color 0.5s ease;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 20px 15px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    header:hover {
+      background-color: #003060;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    header img {
+      height: 80px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    header img:hover {
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      flex-grow: 1;
+      transition: color 0.3s ease;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.3s;
+      display: inline-block;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: #0066cc;
+      transform: scale(1.1);
+      outline: none;
+    }
+
+    main {
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    main > section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      flex: 1 1 600px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    main > section:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    aside {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      width: 300px;
+      height: fit-content;
+      transition: box-shadow 0.3s ease;
+    }
+
+    aside:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      color: #004080;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      color: #0066cc;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin-bottom: 15px;
+      padding-left: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+    }
+
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+      transition: background-color 0.3s ease;
+    }
+
+    table th {
+      background-color: #e6f0ff;
+    }
+
+    table tr:hover td {
+      background-color: #d0e4ff;
+    }
+
+    blockquote {
+      font-style: italic;
+      color: #555;
+      border-left: 4px solid #004080;
+      padding-left: 15px;
+      margin: 15px 0;
+      background-color: #f0f7ff;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    blockquote:hover {
+      background-color: #dbe9ff;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    video {
+      max-width: 100%;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    video:hover {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    form label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="button"],
+    form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    form input[type="text"]:focus,
+    form input[type="email"]:focus,
+    form input[type="button"]:focus,
+    form textarea:focus {
+      border-color: #004080;
+      box-shadow: 0 0 5px #004080;
+      outline: none;
+    }
+
+    form button {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    form button:hover,
+    form button:focus {
+      background-color: #0066cc;
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin-bottom: 5px;
+    }
+    #incrip :hover{
+        background-color: #666;
+    }
+    #incrip{
+    background-color: #004080;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    /* Barra de búsqueda */
+    #busqueda-container {
+      margin-bottom: 20px;
+    }
+
+    #busqueda-container label {
+      font-weight: bold;
+      margin-right: 10px;
+      font-size: 1.1rem;
+    }
+
+    #busqueda {
+      padding: 8px 12px;
+      font-size: 1rem;
+      border: 2px solid #004080;
+      border-radius: 5px;
+      width: 300px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #busqueda:focus {
+      border-color: #0066cc;
+      box-shadow: 0 0 8px #0066cc;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      main {
+        flex-direction: column;
+      }
+
+      aside {
+        width: 100%;
+      }
+
+      #busqueda {
+        width: 100%;
+      }
+    }

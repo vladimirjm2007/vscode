@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C.E.E.Chamberland</title>
+<link rel="stylesheet"href="css.css"> 
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="Logo Complejo Educativo" />
+    <h1>C.E.E.Chamberland"Aprender y Crecer"</h1>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#cursos">Cursos</a></li>
+        <li><a href="#noticias">Noticias</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#inscripcion">inscripcion</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio">
+      <article>
+        <h2>Bienvenidos</h2>
+        <p>En el Complejo Educativo Estadal <strong>"Eulalia Sanchez de Chamberland"</strong> ofrecemos una educación integral para todas las edades.</p>
+        <p><em>¡Tu futuro comienza aquí!</em></p>
+        <img src="foto-complejo.jpg" alt="Vista del complejo educativo" />
+      </article>
+    </section>
+
+    <section id="cursos">
+      <h2>Oferta Académica</h2>
+
+      <div id="busqueda-container">
+        <label for="busqueda">Buscar curso:</label>
+        <input type="text" id="busqueda" placeholder="Escribe para filtrar cursos..." aria-label="Buscar curso" />
+      </div>
+
+      <p>Contamos con una variedad de cursos para diferentes niveles:</p>
+      <ul id="lista-cursos">
+        <li>Educación Inicial</li>
+        <li>Educación Primaria</li>
+        <li>Educación Secundaria</li>
+        <li>Formación Técnica</li>
+      </ul>
+
+      <h3>Horario de clases</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Hora</th>
+            <th>Curso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lunes</td>
+            <td>8:00 - 12:00</td>
+            <td>Educación Inicial</td>
+          </tr>
+          <tr>
+            <td>Martes</td>
+            <td>8:00 - 14:00</td>
+            <td>Educación Primaria</td>
+          </tr>
+          <tr>
+            <td>Miércoles</td>
+            <td>8:00 - 15:00</td>
+            <td>Educación Secundaria</td>
+          </tr>
+          <tr>
+            <td>Jueves</td>
+            <td>14:00 - 18:00</td>
+            <td>Formación Técnica</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="noticias">
+      <h2>Noticias y Eventos</h2>
+      <article>
+        <h3>Feria Científica 2025</h3>
+        <p>El próximo 15 de agosto se realizará la <strong>Feria Científica Anual</strong> en nuestro complejo.</p>
+        <blockquote>
+          "La ciencia es el motor del progreso." - Director del Complejo
+        </blockquote>
+        <video controls>
+          <source src="feria-cientifica.mp4" type="video/mp4" />
+          Tu navegador no soporta video HTML5.
+        </video>
+      </article>
+      <article>
+        <h3>Clases de refuerzo</h3>
+        <p>Se abren inscripciones para clases de refuerzo en matemáticas y ciencias.</p>
+      </article>
+    </section>
+
+    <aside>
+      <h3>Mapa de ubicación</h3>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!..." 
+        width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <h3>Redes Sociales</h3>
+      <ul>
+        <li><a href="https://facebook.com/complejoeducativo" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        <li><a href="https://twitter.com/complejoeducativo" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+        <li><a href="https://instagram.com/complejoeducativo" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+      </ul>
+    </aside>
+
+    <section id="inscripciones">
+      <h2>inscripciones.</h2>
+      <input type="button" id= "incrip" value="inscripciones">
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <form action="/enviar-formulario" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required />
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Complejo Educativo "Aprender y Crecer". Todos los derechos reservados.</p>
+    <p>Dirección: Calle Falsa 123, Ciudad Educativa.</p>
+    <p>Teléfono: +58 123 456 7890 | Email: contacto@aprenderycrecer.edu</p>
+  </footer>
+
+  <script>
+    // Función para filtrar cursos en la lista según texto ingresado
+    const inputBusqueda = document.getElementById('busqueda');
+    const listaCursos = document.getElementById('lista-cursos');
+    const cursos = listaCursos.getElementsByTagName('li');
+
+    inputBusqueda.addEventListener('input', function() {
+      const filtro = this.value.toLowerCase();
+      let visibleCount = 0;
+
+      for (let curso of cursos) {
+        const textoCurso = curso.textContent.toLowerCase();
+        if (textoCurso.includes(filtro)) {
+          curso.style.display = '';
+          visibleCount++;
+        } else {
+          curso.style.display = 'none';
+        }
+      }
+
+      // Si no hay coincidencias, mostrar mensaje
+      if (visibleCount === 0) {
+        if (!document.getElementById('no-results')) {
+          const noResults = document.createElement('li');
+          noResults.id = 'no-results';
+          noResults.textContent = 'No se encontraron cursos.';
+          noResults.style.fontStyle = 'italic';
+          noResults.style.color = '#666';
+          listaCursos.appendChild(noResults);
+        }
+      } else {
+        const noResults = document.getElementById('no-results');
+        if (noResults) {
+          noResults.remove();
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
